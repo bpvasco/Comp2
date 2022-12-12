@@ -10,7 +10,6 @@ typedef struct Nascimento
     int mes;
     int ano;
 } nasc;
-// lista
 typedef struct Estudante
 {
     int mat;
