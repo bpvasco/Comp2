@@ -1,0 +1,131 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+
+typedef struct Nascimento
+{
+    int dia;
+    int mes;
+    int ano;
+} nasc;
+// lista
+typedef struct Estudante
+{
+    int mat;
+    char nome[15];
+    nasc datanasc;
+    char municipio[15];
+    char uf[3];
+} est[20];
+
+est estudante;
+
+void main()
+{
+    char nomeAux[15],resp;
+    int codigoAux,codigo=1,op=0,matricula,matriculaTemp,matAux;
+
+    while (op!=6)
+    {
+        int contador=0;
+        if (op == 0)
+        {
+            printf("1: Cadastrar novo aluno \n 2: Alterar dados \n 3: Consultar por nome \n 4: Consultar por codigo \n 5: Listar todos\n 6: Sair \n\n");
+            scanf("%d", &op);
+            printf("\n\n");
+        }
+
+        if (op == 1)
+        {
+            printf("\nDigite o numero da matricula\n");
+            scanf("%d",&matricula);
+            estudante[codigo].mat=matricula;
+            printf("\nDigite o nome \n");
+            scanf("%s",estudante[codigo].nome);
+            printf("\nDigite o municipio \n");
+            scanf("%s",estudante[codigo].municipio);
+            printf("\nDigite a UF \n");
+            scanf("%s",estudante[codigo].uf);
+            printf("\nDigite o dia de nascimento \n");
+            scanf("%d", &estudante[codigo].datanasc.dia);
+            printf("\nDigite o mes de nascimento \n");
+            scanf("%d", &estudante[codigo].datanasc.mes);
+            printf("\nDigite o ano de nascimento\n");
+            scanf("%d", &estudante[codigo].datanasc.ano);
+            printf("\n\n");
+            codigo ++;
+        }
+
+        if(op==2){
+            printf("Matricula do aluno a alterar os dados \n");
+            scanf("%d",&matAux);
+            for(int aux=0;aux<codigo;aux++){
+                if(estudante[aux].mat==matAux){
+                printf("%d %s %s %s %d %d %d \n",estudante[aux].mat, estudante[aux].nome,estudante[aux].municipio,estudante[aux].uf, estudante[aux].datanasc.dia, estudante[aux].datanasc.mes, estudante[aux].datanasc.ano);
+                printf("\n\n");
+                printf("Digite o numero da matricula");
+                scanf("%d",&estudante[aux].mat);
+                printf("\nDigite o nome \n");
+                scanf("%s",estudante[aux].nome);
+                printf("\nDigite o municipio \n");
+                scanf("%s",estudante[aux].municipio);
+                printf("\nDigite a UF \n");
+                scanf("%s",estudante[aux].uf);
+                printf("\nDigite o dia de nascimento \n");
+                scanf("%d", &estudante[aux].datanasc.dia);
+                printf("\nDigite o mes de nascimento \n");
+                scanf("%d", &estudante[aux].datanasc.mes);
+                printf("\nDigite o ano de nascimento\n");
+                scanf("%d", &estudante[aux].datanasc.ano);
+                printf("\n\n");
+                contador++;
+                }
+            }
+            if(contador==0){
+                printf("Usuario nao encontrado\n\n");
+            }
+
+        }
+
+        if(op==3){
+            printf("Nome a ser consultado\n");
+            scanf("%s",nomeAux);
+            for(int aux=1;aux<codigo;aux++){
+                if(strcmp(estudante[aux].nome,nomeAux)==0){
+                    printf("%d %s %s %s %d %d %d \n",estudante[aux].mat, estudante[aux].nome,estudante[aux].municipio,estudante[aux].uf, estudante[aux].datanasc.dia, estudante[aux].datanasc.mes, estudante[aux].datanasc.ano);
+                    printf("-----------------------------------\n");
+                    contador ++;
+
+                }
+            }
+            if(contador==0) printf("Nome nao encontrado\n\n------------------------------------");
+            printf("\n");
+        }
+        if(op==4){
+            printf("Codigo do aluno a ser consultado\n");
+            scanf("%d",&matAux);
+            for(int aux=1;aux<codigo;aux++){
+                if(estudante[aux].mat==matAux){
+                    printf("%d %s %s %s %d %d %d \n",estudante[aux].mat, estudante[aux].nome,estudante[aux].municipio,estudante[aux].uf, estudante[aux].datanasc.dia, estudante[aux].datanasc.mes, estudante[aux].datanasc.ano);
+                    contador++;
+                }
+            }
+            if(contador==0){
+                printf("Usuario nao encontrado....");
+            }
+        }
+
+        if(op==5){
+            for(int aux=1;aux<codigo;aux++){
+            printf("%d %s %s %s %d %d %d \n",estudante[aux].mat, estudante[aux].nome,estudante[aux].municipio,estudante[aux].uf, estudante[aux].datanasc.dia, estudante[aux].datanasc.mes, estudante[aux].datanasc.ano);
+            }
+            printf("----------------------------------------------------------\n");
+        }
+        if(op==6){
+            break;
+        }
+        op=0;
+    }
+}
